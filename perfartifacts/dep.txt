@@ -1,0 +1,21 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building perf-artifacts 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[WARNING] The POM for commons-math3:commons-math3:jar:3.4.1 is missing, no dependency information available
+[WARNING] The POM for commons-pool2:commons-pool2:jar:2.3 is missing, no dependency information available
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 0.991s
+[INFO] Finished at: Fri Oct 12 17:53:49 IST 2018
+[INFO] Final Memory: 20M/981M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal on project perf-artifacts: Could not resolve dependencies for project org.wso2.iot.perf:perf-artifacts:jar:1.0-SNAPSHOT: The following artifacts could not be resolved: commons-math3:commons-math3:jar:3.4.1, commons-pool2:commons-pool2:jar:2.3: Failure to find commons-math3:commons-math3:jar:3.4.1 in http://repo.maven.apache.org/maven2 was cached in the local repository, resolution will not be reattempted until the update interval of central has elapsed or updates are forced -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/DependencyResolutionException
