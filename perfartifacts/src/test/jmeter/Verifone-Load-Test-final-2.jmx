@@ -66,7 +66,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{ &quot;applicationName&quot;:&quot;appName-${loop_count}&quot;, &quot;tags&quot;:[&quot;device_management&quot;]}</stringProp>
+                <stringProp name="Argument.value">{ &quot;applicationName&quot;:&quot;appName51-${loop_count}&quot;, &quot;tags&quot;:[&quot;device_management&quot;]}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -285,17 +285,18 @@ vars.put(&quot;base64Val&quot;,new String(encodedId))</stringProp>
  // pass true if want to append to existing file  
  // if want to overwrite, then don&apos;t pass the second argument
 
-
- if((accessToken !=null || !accessToken.contains(&quot;access_token_default&quot;)) 
-        &amp;&amp; (refreshToken!= null || !refreshToken.contains(&quot;refresh_token_default&quot;))
- {
+ System.out.println(&quot;****************1********&quot;);
+String response = new String(accessToken);
+if(!response.equals(&quot;access_token_default&quot;)){
+	System.out.println(&quot;****************2********&quot;);
  	FileWriter fstream = new FileWriter(&quot;${token_path}&quot;, true);
  	BufferedWriter out = new BufferedWriter(fstream);
  	out.write(&quot;d24f860f450352a1_${loop_count}&quot;+&quot;,&quot;+ clientId + &quot;,&quot;+ clientSecret+ &quot;,&quot; + accessToken + &quot;,&quot; + refreshToken);
  	out.write(System.getProperty(&quot;line.separator&quot;));
  	out.close();
  	fstream.close();
- }</stringProp>
+}
+ </stringProp>
           </BeanShellPostProcessor>
           <hashTree/>
           <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
@@ -728,7 +729,7 @@ vars.put(&quot;addedUserName&quot;, addedUserName);</stringProp>
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{ &quot;applicationName&quot;:&quot;appName-${loop_count}&quot;, &quot;tags&quot;:[&quot;device_management&quot;]}</stringProp>
+                <stringProp name="Argument.value">{ &quot;applicationName&quot;:&quot;appName51-${loop_count}&quot;, &quot;tags&quot;:[&quot;device_management&quot;]}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
