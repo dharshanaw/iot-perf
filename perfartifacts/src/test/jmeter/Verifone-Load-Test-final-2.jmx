@@ -42,9 +42,9 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">10000</stringProp>
+          <stringProp name="LoopController.loops">5000</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.num_threads">20</stringProp>
         <stringProp name="ThreadGroup.ramp_time">10</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
@@ -284,12 +284,17 @@ vars.put(&quot;base64Val&quot;,new String(encodedId))</stringProp>
 
  // pass true if want to append to existing file  
  // if want to overwrite, then don&apos;t pass the second argument
- FileWriter fstream = new FileWriter(&quot;${token_path}&quot;, true);
- BufferedWriter out = new BufferedWriter(fstream);
- out.write(clientId + &quot;,&quot;+ clientSecret+ &quot;,&quot; + accessToken + &quot;,&quot; + refreshToken);
- out.write(System.getProperty(&quot;line.separator&quot;));
- out.close();
- fstream.close();</stringProp>
+
+
+ if(accessToken != null &amp;&amp; refreshToken!= null)
+ {
+ 	FileWriter fstream = new FileWriter(&quot;${token_path}&quot;, true);
+ 	BufferedWriter out = new BufferedWriter(fstream);
+ 	out.write(&quot;d24f860f450352a1_${loop_count}&quot;+&quot;,&quot;+ clientId + &quot;,&quot;+ clientSecret+ &quot;,&quot; + accessToken + &quot;,&quot; + refreshToken);
+ 	out.write(System.getProperty(&quot;line.separator&quot;));
+ 	out.close();
+ 	fstream.close();
+ }</stringProp>
           </BeanShellPostProcessor>
           <hashTree/>
           <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
@@ -713,7 +718,7 @@ vars.put(&quot;addedUserName&quot;, addedUserName);</stringProp>
           <boolProp name="recycle">true</boolProp>
           <stringProp name="shareMode">shareMode.group</stringProp>
           <boolProp name="stopThread">true</boolProp>
-          <stringProp name="variableNames">clientId,clientSecret,accessToken,refreshToken</stringProp>
+          <stringProp name="variableNames">deviceId,clientId,clientSecret,accessToken,refreshToken</stringProp>
         </CSVDataSet>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DYNAMIC-CLIENT-REGISTRATION" enabled="false">
@@ -881,7 +886,7 @@ vars.put(&quot;base64Val&quot;,new String(encodedId))</stringProp>
           <stringProp name="HTTPSampler.port">9443</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/api/device-mgt/android/v1.0/devices/d24f860f450352a1_${loop_count}/pending-operations</stringProp>
+          <stringProp name="HTTPSampler.path">/api/device-mgt/android/v1.0/devices/${deviceId}/pending-operations</stringProp>
           <stringProp name="HTTPSampler.method">PUT</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
