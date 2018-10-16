@@ -252,9 +252,6 @@ vars.put(&quot;base64UserNamePass&quot;,new String(encodedId))</stringProp>
 String clientId= vars.get(&quot;client_id&quot;);
 String clientSecret= vars.get(&quot;client_secret&quot;);
 String combinedString= clientId+&quot;:&quot;+clientSecret;
-System.out.println(&quot;ReqData=&quot;+clientId);
-System.out.println(&quot;ReqData=&quot;+clientSecret);
-System.out.println(&quot;ReqData=&quot;+combinedString);
 byte[] encodedId = Base64.encodeBase64(combinedString.getBytes());
 vars.put(&quot;base64Val&quot;,new String(encodedId))</stringProp>
           </BeanShellPreProcessor>
@@ -1095,9 +1092,6 @@ vars.put(&quot;base64Val&quot;,new String(encodedId))</stringProp>
 String clientId= vars.get(&quot;clientId&quot;);
 String clientSecret= vars.get(&quot;clientSecret&quot;);
 String combinedString= clientId+&quot;:&quot;+clientSecret;
-System.out.println(&quot;ReqData=&quot;+clientId);
-System.out.println(&quot;ReqData=&quot;+clientSecret);
-System.out.println(&quot;ReqData=&quot;+combinedString);
 byte[] encodedId = Base64.encodeBase64(combinedString.getBytes());
 vars.put(&quot;base264Val&quot;,new String(encodedId))</stringProp>
             </BeanShellPreProcessor>
