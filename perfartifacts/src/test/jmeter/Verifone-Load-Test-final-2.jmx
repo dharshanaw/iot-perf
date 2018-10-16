@@ -44,7 +44,7 @@
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">5000</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">20</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">10</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
@@ -286,7 +286,8 @@ vars.put(&quot;base64Val&quot;,new String(encodedId))</stringProp>
  // if want to overwrite, then don&apos;t pass the second argument
 
 
- if(accessToken != null &amp;&amp; refreshToken!= null)
+ if((accessToken !=null || accessToken.contains(&quot;access_token_default&quot;)) 
+        &amp;&amp; (refreshToken!= null || refreshToken.contains(&quot;refresh_token_default&quot;))
  {
  	FileWriter fstream = new FileWriter(&quot;${token_path}&quot;, true);
  	BufferedWriter out = new BufferedWriter(fstream);
