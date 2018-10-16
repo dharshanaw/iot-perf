@@ -286,8 +286,8 @@ vars.put(&quot;base64Val&quot;,new String(encodedId))</stringProp>
  // if want to overwrite, then don&apos;t pass the second argument
 
 
- if((accessToken !=null || accessToken.contains(&quot;access_token_default&quot;)) 
-        &amp;&amp; (refreshToken!= null || refreshToken.contains(&quot;refresh_token_default&quot;))
+ if((accessToken !=null || !accessToken.contains(&quot;access_token_default&quot;)) 
+        &amp;&amp; (refreshToken!= null || !refreshToken.contains(&quot;refresh_token_default&quot;))
  {
  	FileWriter fstream = new FileWriter(&quot;${token_path}&quot;, true);
  	BufferedWriter out = new BufferedWriter(fstream);
