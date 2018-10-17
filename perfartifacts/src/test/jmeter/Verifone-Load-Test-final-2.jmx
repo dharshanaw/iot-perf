@@ -1140,11 +1140,14 @@ while((line = reader.readLine()) != null)
 		oldtext += line + &quot;\r\n&quot;;
 	}
 reader.close();
-String newtext = oldtext.replaceAll(accessToken, &quot;&quot;+newAccessToken);
-FileWriter writer = new FileWriter(&quot;${token_path}&quot;);
-writer.write(newtext);
-Thread.sleep(5000);
-writer.close();</stringProp>
+String response = new String(newAccessToken);
+if(!response.equals(&quot;access_token_default&quot;)){
+	String newtext = oldtext.replaceAll(accessToken, &quot;&quot;+newAccessToken);
+	FileWriter writer = new FileWriter(&quot;${token_path}&quot;);
+	writer.write(newtext);
+	Thread.sleep(5000);
+	writer.close();
+}</stringProp>
             </BeanShellPostProcessor>
             <hashTree/>
           </hashTree>
