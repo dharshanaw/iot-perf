@@ -714,7 +714,7 @@ vars.put(&quot;addedUserName&quot;, addedUserName);</stringProp>
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="ClientIDSecretConfig" enabled="true">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
-          <stringProp name="filename">/Users/dharshana/test3.csv</stringProp>
+          <stringProp name="filename">/home/ubuntu/test3.csv</stringProp>
           <boolProp name="ignoreFirstLine">false</boolProp>
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">true</boolProp>
@@ -1155,7 +1155,7 @@ writer.close();</stringProp>
             <stringProp name="HTTPSampler.port">9443</stringProp>
             <stringProp name="HTTPSampler.protocol">https</stringProp>
             <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-            <stringProp name="HTTPSampler.path">/api/device-mgt/android/v1.0/devices/d24f860f450352a1_${loop_count}/pending-operations</stringProp>
+            <stringProp name="HTTPSampler.path">/api/device-mgt/android/v1.0/devices/${deviceId}/pending-operations</stringProp>
             <stringProp name="HTTPSampler.method">PUT</stringProp>
             <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
             <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
