@@ -697,7 +697,7 @@ vars.put(&quot;addedUserName&quot;, addedUserName);</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">5</stringProp>
         <stringProp name="ThreadGroup.ramp_time">10</stringProp>
-        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration">86400</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
