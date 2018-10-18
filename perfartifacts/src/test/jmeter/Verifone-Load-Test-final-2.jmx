@@ -9,7 +9,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="server_ip" elementType="Argument">
             <stringProp name="Argument.name">server_ip</stringProp>
-            <stringProp name="Argument.value">192.168.53.243</stringProp>
+            <stringProp name="Argument.value">192.168.53.242</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="username" elementType="Argument">
@@ -29,7 +29,7 @@
           </elementProp>
           <elementProp name="token_path" elementType="Argument">
             <stringProp name="Argument.name">token_path</stringProp>
-            <stringProp name="Argument.value">../test3.csv</stringProp>
+            <stringProp name="Argument.value">../test4.csv</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -38,11 +38,11 @@
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Environment Setup" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Environment Setup" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">1000</stringProp>
+          <stringProp name="LoopController.loops">10000</stringProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">10</stringProp>
@@ -52,7 +52,7 @@
       </ThreadGroup>
       <hashTree>
         <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
-          <stringProp name="CounterConfig.start">4000</stringProp>
+          <stringProp name="CounterConfig.start">1</stringProp>
           <stringProp name="CounterConfig.end"></stringProp>
           <stringProp name="CounterConfig.incr">1</stringProp>
           <stringProp name="CounterConfig.name">loop_count</stringProp>
@@ -60,13 +60,29 @@
           <boolProp name="CounterConfig.per_user">false</boolProp>
         </CounterConfig>
         <hashTree/>
+        <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="JDBC Connection Configuration" enabled="true">
+          <boolProp name="autocommit">true</boolProp>
+          <stringProp name="checkQuery">select 1</stringProp>
+          <stringProp name="connectionAge">5000</stringProp>
+          <stringProp name="dataSource">JDBCTESTINITPOOL</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://192.168.52.116:3306/PERF_UM_DB?useSSL=false</stringProp>
+          <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
+          <boolProp name="keepAlive">true</boolProp>
+          <stringProp name="password">admin</stringProp>
+          <stringProp name="poolMax">100</stringProp>
+          <stringProp name="timeout">10000</stringProp>
+          <stringProp name="transactionIsolation">DEFAULT</stringProp>
+          <stringProp name="trimInterval">60000</stringProp>
+          <stringProp name="username">root</stringProp>
+        </JDBCDataSource>
+        <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DYNAMIC-CLIENT-REGISTRATION" enabled="true">
           <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{ &quot;applicationName&quot;:&quot;appName51-${loop_count}&quot;, &quot;tags&quot;:[&quot;device_management&quot;]}</stringProp>
+                <stringProp name="Argument.value">{ &quot;applicationName&quot;:&quot;appName53-${loop_count}&quot;, &quot;tags&quot;:[&quot;device_management&quot;]}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -291,13 +307,25 @@ if(!response.equals(&quot;access_token_default&quot;)){
 	System.out.println(&quot;****************2********&quot;);
  	FileWriter fstream = new FileWriter(&quot;${token_path}&quot;, true);
  	BufferedWriter out = new BufferedWriter(fstream);
- 	out.write(&quot;d24f860f450352a1_${loop_count}&quot;+&quot;,&quot;+ clientId + &quot;,&quot;+ clientSecret+ &quot;,&quot; + accessToken + &quot;,&quot; + refreshToken);
+ 	out.write(&quot;d24f860f450352a1_${loop_count}&quot;);
  	out.write(System.getProperty(&quot;line.separator&quot;));
  	out.close();
  	fstream.close();
 }
  </stringProp>
           </BeanShellPostProcessor>
+          <hashTree/>
+          <JDBCPostProcessor guiclass="TestBeanGUI" testclass="JDBCPostProcessor" testname="JDBC PostProcessor" enabled="true">
+            <stringProp name="dataSource">JDBCTESTINITPOOL</stringProp>
+            <stringProp name="query">INSERT INTO Jmeter_Token.Jmeter_Application_run(applicationId,clientId,clientSecret,accessToken,refreshToken,updatedTime) VALUES (&quot;d24f860f450352a1_${loop_count}&quot;,&quot;${client_id}&quot;,&quot;${client_secret}&quot;,&quot;${access_token}&quot;,&quot;${refresh_token}&quot;,CURRENT_TIMESTAMP());</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="queryType">Update Statement</stringProp>
+            <stringProp name="resultSetHandler">Store as String</stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="variableNames"></stringProp>
+          </JDBCPostProcessor>
           <hashTree/>
           <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
@@ -343,7 +371,7 @@ if(!response.equals(&quot;access_token_default&quot;)){
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
-	&quot;username&quot;:&quot;PRIMARY/testuser21_${loop_count}&quot;,&#xd;
+	&quot;username&quot;:&quot;PRIMARY/testuser_${loop_count}&quot;,&#xd;
 	&quot;firstname&quot;:&quot;test&quot;,&#xd;
 	&quot;lastname&quot;:&quot;user&quot;,&#xd;
 	&quot;emailAddress&quot;:&quot;test@wso2.com&quot;,&#xd;
@@ -392,6 +420,18 @@ if(!response.equals(&quot;access_token_default&quot;)){
             <stringProp name="script">String addedUserName = &quot;abhishek_&quot; + vars.get(&quot;loop_count&quot;);
 vars.put(&quot;addedUserName&quot;, addedUserName);</stringProp>
           </BeanShellPostProcessor>
+          <hashTree/>
+          <JDBCPostProcessor guiclass="TestBeanGUI" testclass="JDBCPostProcessor" testname="JDBC PostProcessor" enabled="true">
+            <stringProp name="dataSource">JDBCTESTINITPOOL</stringProp>
+            <stringProp name="queryType">Update Statement</stringProp>
+            <stringProp name="query">DELETE FROM Jmeter_Token.Jmeter_Application_run WHERE accessToken=&quot;access_token_default&quot;;</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="variableNames"></stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="resultSetHandler">Store as String</stringProp>
+          </JDBCPostProcessor>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DEVICE-REGISTRATION" enabled="true">
@@ -696,7 +736,7 @@ vars.put(&quot;addedUserName&quot;, addedUserName);</stringProp>
           <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">10</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">10</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">20</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration">86400</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
@@ -711,16 +751,32 @@ vars.put(&quot;addedUserName&quot;, addedUserName);</stringProp>
           <boolProp name="CounterConfig.per_user">false</boolProp>
         </CounterConfig>
         <hashTree/>
+        <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="JDBC Connection Configuration" enabled="true">
+          <boolProp name="autocommit">true</boolProp>
+          <stringProp name="checkQuery">select 1</stringProp>
+          <stringProp name="connectionAge">5000</stringProp>
+          <stringProp name="dataSource">JDBCTESTRUNPOOL</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://192.168.52.116:3306/PERF_UM_DB?useSSL=false</stringProp>
+          <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
+          <boolProp name="keepAlive">true</boolProp>
+          <stringProp name="password">admin</stringProp>
+          <stringProp name="poolMax">100</stringProp>
+          <stringProp name="timeout">10000</stringProp>
+          <stringProp name="transactionIsolation">DEFAULT</stringProp>
+          <stringProp name="trimInterval">60000</stringProp>
+          <stringProp name="username">root</stringProp>
+        </JDBCDataSource>
+        <hashTree/>
         <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="ClientIDSecretConfig" enabled="true">
           <stringProp name="delimiter">,</stringProp>
           <stringProp name="fileEncoding">UTF-8</stringProp>
-          <stringProp name="filename">/home/ubuntu/test3.csv</stringProp>
+          <stringProp name="filename">${token_path}</stringProp>
           <boolProp name="ignoreFirstLine">false</boolProp>
           <boolProp name="quotedData">false</boolProp>
           <boolProp name="recycle">true</boolProp>
           <stringProp name="shareMode">shareMode.all</stringProp>
           <boolProp name="stopThread">false</boolProp>
-          <stringProp name="variableNames">deviceId,clientId,clientSecret,accessToken,refreshToken</stringProp>
+          <stringProp name="variableNames">deviceId</stringProp>
         </CSVDataSet>
         <hashTree/>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DYNAMIC-CLIENT-REGISTRATION" enabled="false">
@@ -880,6 +936,74 @@ vars.put(&quot;base64Val&quot;,new String(encodedId))</stringProp>
           </JSONPostProcessor>
           <hashTree/>
         </hashTree>
+        <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC Request" enabled="true">
+          <stringProp name="dataSource">JDBCTESTRUNPOOL</stringProp>
+          <stringProp name="query">SELECT applicationId,clientId,clientSecret,accessToken,refreshToken FROM Jmeter_Token.Jmeter_Application_run where applicationId =&quot;${deviceId}&quot;;</stringProp>
+          <stringProp name="queryArguments"></stringProp>
+          <stringProp name="queryArgumentsTypes"></stringProp>
+          <stringProp name="queryTimeout"></stringProp>
+          <stringProp name="queryType">Select Statement</stringProp>
+          <stringProp name="resultSetHandler">Store as String</stringProp>
+          <stringProp name="resultVariable">resultList</stringProp>
+          <stringProp name="variableNames"></stringProp>
+        </JDBCSampler>
+        <hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script"> applicationId = vars.getObject(&quot;resultList&quot;).get(0).get(&quot;applicationId&quot;);
+ clientId = vars.getObject(&quot;resultList&quot;).get(0).get(&quot;clientId&quot;);
+ clientSecret = vars.getObject(&quot;resultList&quot;).get(0).get(&quot;clientSecret&quot;);
+ accessToken = vars.getObject(&quot;resultList&quot;).get(0).get(&quot;accessToken&quot;);
+ refreshToken = vars.getObject(&quot;resultList&quot;).get(0).get(&quot;refreshToken&quot;);
+
+vars.put(&quot;applicationId&quot;,new String(applicationId));
+vars.put(&quot;clientId&quot;,new String(clientId));
+vars.put(&quot;clientSecret&quot;,new String(clientSecret));
+vars.put(&quot;accessToken&quot;,new String(accessToken));
+vars.put(&quot;refreshToken&quot;,new String(refreshToken));
+</stringProp>
+          </BeanShellPostProcessor>
+          <hashTree/>
+        </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PENDING-OPERATIONS" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
@@ -888,7 +1012,7 @@ vars.put(&quot;base64Val&quot;,new String(encodedId))</stringProp>
           <stringProp name="HTTPSampler.port">9443</stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">/api/device-mgt/android/v1.0/devices/${deviceId}/pending-operations</stringProp>
+          <stringProp name="HTTPSampler.path">/api/device-mgt/android/v1.0/devices/${applicationId}/pending-operations</stringProp>
           <stringProp name="HTTPSampler.method">PUT</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
@@ -1124,7 +1248,7 @@ vars.put(&quot;base264Val&quot;,new String(encodedId))</stringProp>
               <stringProp name="JSONPostProcessor.defaultValues">access_token_default</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="false">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
               <stringProp name="filename"></stringProp>
@@ -1149,6 +1273,23 @@ if(!response.equals(&quot;access_token_default&quot;)){
 	writer.close();
 }</stringProp>
             </BeanShellPostProcessor>
+            <hashTree/>
+            <JDBCPostProcessor guiclass="TestBeanGUI" testclass="JDBCPostProcessor" testname="JDBC PostProcessor" enabled="false">
+              <stringProp name="dataSource"></stringProp>
+              <stringProp name="queryType">Update Statement</stringProp>
+              <stringProp name="query">UPDATE Jmeter_Application_run
+SET accessToken = &quot;${accessToken}&quot;, updatedTime=CURRENT_TIMESTAMP()
+WHERE refreshToken = &quot;${access_token_refreshed}&quot;;
+
+
+</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+            </JDBCPostProcessor>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PENDING-OPERATIONS-RETRY" enabled="true">
