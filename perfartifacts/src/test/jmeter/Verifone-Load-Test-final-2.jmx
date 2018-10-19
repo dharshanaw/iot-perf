@@ -9,7 +9,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="server_ip" elementType="Argument">
             <stringProp name="Argument.name">server_ip</stringProp>
-            <stringProp name="Argument.value">192.168.53.242</stringProp>
+            <stringProp name="Argument.value"></stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="username" elementType="Argument">
@@ -29,7 +29,7 @@
           </elementProp>
           <elementProp name="token_path" elementType="Argument">
             <stringProp name="Argument.name">token_path</stringProp>
-            <stringProp name="Argument.value">../test4.csv</stringProp>
+            <stringProp name="Argument.value">../test6.csv</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>
@@ -38,7 +38,7 @@
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
     </TestPlan>
     <hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Environment Setup" enabled="false">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Environment Setup" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -52,7 +52,7 @@
       </ThreadGroup>
       <hashTree>
         <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
-          <stringProp name="CounterConfig.start">1</stringProp>
+          <stringProp name="CounterConfig.start">0</stringProp>
           <stringProp name="CounterConfig.end"></stringProp>
           <stringProp name="CounterConfig.incr">1</stringProp>
           <stringProp name="CounterConfig.name">loop_count</stringProp>
@@ -65,11 +65,11 @@
           <stringProp name="checkQuery">select 1</stringProp>
           <stringProp name="connectionAge">5000</stringProp>
           <stringProp name="dataSource">JDBCTESTINITPOOL</stringProp>
-          <stringProp name="dbUrl">jdbc:mysql://192.168.52.116:3306/PERF_UM_DB?useSSL=false</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://192.168.52.115:3306/PERF_UM_DB?useSSL=false</stringProp>
           <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
           <boolProp name="keepAlive">true</boolProp>
           <stringProp name="password">admin</stringProp>
-          <stringProp name="poolMax">100</stringProp>
+          <stringProp name="poolMax">0</stringProp>
           <stringProp name="timeout">10000</stringProp>
           <stringProp name="transactionIsolation">DEFAULT</stringProp>
           <stringProp name="trimInterval">60000</stringProp>
@@ -82,7 +82,7 @@
             <collectionProp name="Arguments.arguments">
               <elementProp name="" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                <stringProp name="Argument.value">{ &quot;applicationName&quot;:&quot;appName53-${loop_count}&quot;, &quot;tags&quot;:[&quot;device_management&quot;]}</stringProp>
+                <stringProp name="Argument.value">{ &quot;applicationName&quot;:&quot;appName-${loop_count}&quot;, &quot;tags&quot;:[&quot;device_management&quot;]}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
@@ -619,7 +619,7 @@ vars.put(&quot;addedUserName&quot;, addedUserName);</stringProp>
           </HeaderManager>
           <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -725,7 +725,7 @@ vars.put(&quot;addedUserName&quot;, addedUserName);</stringProp>
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">initiate.jtl</stringProp>
+          <stringProp name="filename">initiatetest.jtl</stringProp>
         </ResultCollector>
         <hashTree/>
       </hashTree>
@@ -735,7 +735,7 @@ vars.put(&quot;addedUserName&quot;, addedUserName);</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">20</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration">86400</stringProp>
@@ -743,7 +743,7 @@ vars.put(&quot;addedUserName&quot;, addedUserName);</stringProp>
       </ThreadGroup>
       <hashTree>
         <CounterConfig guiclass="CounterConfigGui" testclass="CounterConfig" testname="Counter" enabled="true">
-          <stringProp name="CounterConfig.start">300</stringProp>
+          <stringProp name="CounterConfig.start">1</stringProp>
           <stringProp name="CounterConfig.end"></stringProp>
           <stringProp name="CounterConfig.incr">1</stringProp>
           <stringProp name="CounterConfig.name">loop_count</stringProp>
@@ -756,11 +756,11 @@ vars.put(&quot;addedUserName&quot;, addedUserName);</stringProp>
           <stringProp name="checkQuery">select 1</stringProp>
           <stringProp name="connectionAge">5000</stringProp>
           <stringProp name="dataSource">JDBCTESTRUNPOOL</stringProp>
-          <stringProp name="dbUrl">jdbc:mysql://192.168.52.116:3306/PERF_UM_DB?useSSL=false</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://192.168.52.115:3306/PERF_UM_DB?useSSL=false</stringProp>
           <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
           <boolProp name="keepAlive">true</boolProp>
           <stringProp name="password">admin</stringProp>
-          <stringProp name="poolMax">100</stringProp>
+          <stringProp name="poolMax">0</stringProp>
           <stringProp name="timeout">10000</stringProp>
           <stringProp name="transactionIsolation">DEFAULT</stringProp>
           <stringProp name="trimInterval">60000</stringProp>
@@ -948,7 +948,7 @@ vars.put(&quot;base64Val&quot;,new String(encodedId))</stringProp>
           <stringProp name="variableNames"></stringProp>
         </JDBCSampler>
         <hashTree>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -1178,7 +1178,41 @@ vars.put(&quot;refreshToken&quot;,new String(refreshToken));
             <stringProp name="HTTPSampler.response_timeout"></stringProp>
           </HTTPSamplerProxy>
           <hashTree>
-            <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script">import org.apache.commons.codec.binary.Base64;
+
+String clientId= vars.get(&quot;clientId&quot;);
+String clientSecret= vars.get(&quot;clientSecret&quot;);
+String combinedString= clientId+&quot;:&quot;+clientSecret;
+byte[] encodedId = Base64.encodeBase64(combinedString.getBytes());
+vars.put(&quot;base264Val&quot;,new String(encodedId))</stringProp>
+            </BeanShellPreProcessor>
+            <hashTree/>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  <stringProp name="Header.value">Basic ${base264Val}</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="Access-Token-Extractor" enabled="true">
+              <stringProp name="JSONPostProcessor.referenceNames">access_token_refreshed</stringProp>
+              <stringProp name="JSONPostProcessor.jsonPathExprs">$.access_token</stringProp>
+              <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
+              <boolProp name="JSONPostProcessor.compute_concat">true</boolProp>
+              <stringProp name="JSONPostProcessor.defaultValues">access_token_default</stringProp>
+            </JSONPostProcessor>
+            <hashTree/>
+            <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
               <boolProp name="ResultCollector.error_logging">false</boolProp>
               <objProp>
                 <name>saveConfig</name>
@@ -1214,40 +1248,6 @@ vars.put(&quot;refreshToken&quot;,new String(refreshToken));
               <stringProp name="filename"></stringProp>
             </ResultCollector>
             <hashTree/>
-            <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="BeanShell PreProcessor" enabled="true">
-              <stringProp name="filename"></stringProp>
-              <stringProp name="parameters"></stringProp>
-              <boolProp name="resetInterpreter">false</boolProp>
-              <stringProp name="script">import org.apache.commons.codec.binary.Base64;
-
-String clientId= vars.get(&quot;clientId&quot;);
-String clientSecret= vars.get(&quot;clientSecret&quot;);
-String combinedString= clientId+&quot;:&quot;+clientSecret;
-byte[] encodedId = Base64.encodeBase64(combinedString.getBytes());
-vars.put(&quot;base264Val&quot;,new String(encodedId))</stringProp>
-            </BeanShellPreProcessor>
-            <hashTree/>
-            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
-              <collectionProp name="HeaderManager.headers">
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">Authorization</stringProp>
-                  <stringProp name="Header.value">Basic ${base264Val}</stringProp>
-                </elementProp>
-                <elementProp name="" elementType="Header">
-                  <stringProp name="Header.name">Content-Type</stringProp>
-                  <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
-                </elementProp>
-              </collectionProp>
-            </HeaderManager>
-            <hashTree/>
-            <JSONPostProcessor guiclass="JSONPostProcessorGui" testclass="JSONPostProcessor" testname="Access-Token-Extractor" enabled="true">
-              <stringProp name="JSONPostProcessor.referenceNames">access_token_refreshed</stringProp>
-              <stringProp name="JSONPostProcessor.jsonPathExprs">$.access_token</stringProp>
-              <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
-              <boolProp name="JSONPostProcessor.compute_concat">true</boolProp>
-              <stringProp name="JSONPostProcessor.defaultValues">access_token_default</stringProp>
-            </JSONPostProcessor>
-            <hashTree/>
             <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="false">
               <boolProp name="resetInterpreter">false</boolProp>
               <stringProp name="parameters"></stringProp>
@@ -1274,7 +1274,7 @@ if(!response.equals(&quot;access_token_default&quot;)){
 }</stringProp>
             </BeanShellPostProcessor>
             <hashTree/>
-            <JDBCPostProcessor guiclass="TestBeanGUI" testclass="JDBCPostProcessor" testname="JDBC PostProcessor" enabled="true">
+            <JDBCPostProcessor guiclass="TestBeanGUI" testclass="JDBCPostProcessor" testname="JDBC PostProcessor" enabled="false">
               <stringProp name="dataSource"></stringProp>
               <stringProp name="queryType">Update Statement</stringProp>
               <stringProp name="query">UPDATE Jmeter_Token.Jmeter_Application_run
@@ -1389,7 +1389,7 @@ WHERE refreshToken = &quot;${refreshToken}&quot;;
             <stringProp name="filename"></stringProp>
           </ResultCollector>
           <hashTree/>
-          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
             <boolProp name="ResultCollector.error_logging">false</boolProp>
             <objProp>
               <name>saveConfig</name>
@@ -1498,10 +1498,10 @@ WHERE refreshToken = &quot;${refreshToken}&quot;;
               <connectTime>true</connectTime>
             </value>
           </objProp>
-          <stringProp name="filename">test.jtl</stringProp>
+          <stringProp name="filename">testrun.jtl</stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
