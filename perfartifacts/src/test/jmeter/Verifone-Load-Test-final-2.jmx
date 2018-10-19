@@ -9,7 +9,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="server_ip" elementType="Argument">
             <stringProp name="Argument.name">server_ip</stringProp>
-            <stringProp name="Argument.value"></stringProp>
+            <stringProp name="Argument.value">192.168.53.242</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="username" elementType="Argument">
