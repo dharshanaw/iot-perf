@@ -1274,7 +1274,7 @@ if(!response.equals(&quot;access_token_default&quot;)){
 }</stringProp>
             </BeanShellPostProcessor>
             <hashTree/>
-            <JDBCPostProcessor guiclass="TestBeanGUI" testclass="JDBCPostProcessor" testname="JDBC PostProcessor" enabled="false">
+            <JDBCPostProcessor guiclass="TestBeanGUI" testclass="JDBCPostProcessor" testname="JDBC PostProcessor" enabled="true">
               <stringProp name="dataSource"></stringProp>
               <stringProp name="queryType">Update Statement</stringProp>
               <stringProp name="query">UPDATE Jmeter_Token.Jmeter_Application_run
