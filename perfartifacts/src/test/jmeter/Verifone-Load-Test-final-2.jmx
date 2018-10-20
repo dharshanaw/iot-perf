@@ -9,7 +9,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="server_ip" elementType="Argument">
             <stringProp name="Argument.name">server_ip</stringProp>
-            <stringProp name="Argument.value">192.168.53.243</stringProp>
+            <stringProp name="Argument.value">192.168.53.242</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="username" elementType="Argument">
@@ -65,7 +65,7 @@
           <stringProp name="checkQuery">select 1</stringProp>
           <stringProp name="connectionAge">5000</stringProp>
           <stringProp name="dataSource">JDBCTESTINITPOOL</stringProp>
-          <stringProp name="dbUrl">jdbc:mysql://192.168.52.116:3306/PERF_UM_DB?useSSL=false</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://192.168.52.115:3306/PERF_UM_DB?useSSL=false</stringProp>
           <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
           <boolProp name="keepAlive">true</boolProp>
           <stringProp name="password">admin</stringProp>
@@ -735,7 +735,7 @@ vars.put(&quot;addedUserName&quot;, addedUserName);</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">100</stringProp>
+        <stringProp name="ThreadGroup.num_threads">300</stringProp>
         <stringProp name="ThreadGroup.ramp_time">20</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration">86400</stringProp>
@@ -756,7 +756,7 @@ vars.put(&quot;addedUserName&quot;, addedUserName);</stringProp>
           <stringProp name="checkQuery">select 1</stringProp>
           <stringProp name="connectionAge">5000</stringProp>
           <stringProp name="dataSource">JDBCTESTRUNPOOL</stringProp>
-          <stringProp name="dbUrl">jdbc:mysql://192.168.52.116:3306/PERF_UM_DB?useSSL=false</stringProp>
+          <stringProp name="dbUrl">jdbc:mysql://192.168.52.115:3306/PERF_UM_DB?useSSL=false</stringProp>
           <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
           <boolProp name="keepAlive">true</boolProp>
           <stringProp name="password">admin</stringProp>
