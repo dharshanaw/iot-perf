@@ -1210,9 +1210,37 @@ vars.put(&quot;base264Val&quot;,new String(encodedId))</stringProp>
               <stringProp name="JSONPostProcessor.match_numbers">0</stringProp>
               <boolProp name="JSONPostProcessor.compute_concat">true</boolProp>
               <stringProp name="JSONPostProcessor.defaultValues">access_token_default</stringProp>
+              <stringProp name="Sample.scope">all</stringProp>
             </JSONPostProcessor>
             <hashTree/>
-            <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="parameters"></stringProp>
+              <stringProp name="filename"></stringProp>
+              <stringProp name="script">
+String accessToken = vars.get(&quot;accessToken&quot;);
+String newAccessToken = vars.get(&quot;access_token_refreshed&quot;);
+System.out.println(&quot;________________&quot;+ accessToken);
+System.out.println(&quot;****************&quot;+ newAccessToken);
+System.out.println(&quot;****************&quot;+ newAccessToken);</stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+            <JDBCPostProcessor guiclass="TestBeanGUI" testclass="JDBCPostProcessor" testname="JDBC PostProcessor" enabled="false">
+              <stringProp name="dataSource"></stringProp>
+              <stringProp name="queryType">Update Statement</stringProp>
+              <stringProp name="query">UPDATE Jmeter_Token.Jmeter_Application_run
+SET accessToken = &quot;${access_token_refreshed}&quot;, updatedTime=CURRENT_TIMESTAMP()
+WHERE refreshToken = &quot;${refreshToken}&quot;;
+</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="variableNames"></stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+              <stringProp name="resultSetHandler">Store as String</stringProp>
+            </JDBCPostProcessor>
+            <hashTree/>
+            <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
               <boolProp name="ResultCollector.error_logging">false</boolProp>
               <objProp>
                 <name>saveConfig</name>
@@ -1247,47 +1275,6 @@ vars.put(&quot;base264Val&quot;,new String(encodedId))</stringProp>
               </objProp>
               <stringProp name="filename"></stringProp>
             </ResultCollector>
-            <hashTree/>
-            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="false">
-              <boolProp name="resetInterpreter">false</boolProp>
-              <stringProp name="parameters"></stringProp>
-              <stringProp name="filename"></stringProp>
-              <stringProp name="script">
-String accessToken = vars.get(&quot;accessToken&quot;);
-String newAccessToken = vars.get(&quot;access_token_refreshed&quot;);
-File file = new File(&quot;${token_path}&quot;);
-BufferedReader reader = new BufferedReader(new FileReader(file));
-String line = accessToken;
-String oldtext= &quot;&quot;;
-while((line = reader.readLine()) != null)
-	{
-		oldtext += line + &quot;\r\n&quot;;
-	}
-reader.close();
-String response = new String(newAccessToken);
-if(!response.equals(&quot;access_token_default&quot;)){
-	String newtext = oldtext.replaceAll(accessToken, &quot;&quot;+newAccessToken);
-	FileWriter writer = new FileWriter(&quot;${token_path}&quot;);
-	writer.write(newtext);
-	Thread.sleep(5000);
-	writer.close();
-}</stringProp>
-            </BeanShellPostProcessor>
-            <hashTree/>
-            <JDBCPostProcessor guiclass="TestBeanGUI" testclass="JDBCPostProcessor" testname="JDBC PostProcessor" enabled="false">
-              <stringProp name="dataSource"></stringProp>
-              <stringProp name="queryType">Update Statement</stringProp>
-              <stringProp name="query">UPDATE Jmeter_Token.Jmeter_Application_run
-SET accessToken = &quot;${access_token_refreshed}&quot;, updatedTime=CURRENT_TIMESTAMP()
-WHERE refreshToken = &quot;${refreshToken}&quot;;
-</stringProp>
-              <stringProp name="queryArguments"></stringProp>
-              <stringProp name="queryArgumentsTypes"></stringProp>
-              <stringProp name="variableNames"></stringProp>
-              <stringProp name="resultVariable"></stringProp>
-              <stringProp name="queryTimeout"></stringProp>
-              <stringProp name="resultSetHandler">Store as String</stringProp>
-            </JDBCPostProcessor>
             <hashTree/>
           </hashTree>
           <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PENDING-OPERATIONS-RETRY" enabled="true">
@@ -1426,8 +1413,23 @@ WHERE refreshToken = &quot;${refreshToken}&quot;;
             <stringProp name="filename"></stringProp>
           </ResultCollector>
           <hashTree/>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="JDBC-Update-Token" enabled="true">
+            <stringProp name="dataSource">JDBCTESTRUNPOOL</stringProp>
+            <stringProp name="queryType">Update Statement</stringProp>
+            <stringProp name="query">UPDATE Jmeter_Token.Jmeter_Application_run
+SET accessToken = &quot;${access_token_refreshed}&quot;, updatedTime=CURRENT_TIMESTAMP()
+WHERE accessToken = &quot;${accessToken}&quot;;
+</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="variableNames"></stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+            <stringProp name="resultSetHandler">Store as String</stringProp>
+          </JDBCSampler>
+          <hashTree/>
         </hashTree>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
